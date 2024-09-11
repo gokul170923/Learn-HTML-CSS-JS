@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tic-Tac-Toe</title>
+</head>
+<body>
+        <button id="b00" ></button>
+        <button id="b01" ></button>
+        <button id="b02" ></button>
+        <br>
+        <button id="b10" ></button>
+        <button id="b11" ></button>
+        <button id="b12" ></button>
+        <br>
+        <button id="b20" ></button>
+        <button id="b21" ></button>
+        <button id="b22" ></button>
+        
+</body>
+
+<script>
+        let startform = prompt('start with X or O');
+        startform = startform.toLowerCase();
+        const winx = [0,0,0,1,1,1,2,2,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2];
+        const winy = [0,1,2,0,1,2,0,1,2,0,0,0,1,1,1,2,2,2,0,1,2,2,1,0];
+        total = 9;
+
+        playarea = []
+        for(let i=0;i<3;i++){
+                playarea[i] = []
+                for(let j =0;j<3;j++){
+                        playarea[i][j] = document.getElementById(`b${i}${j}`);
+
+                        playarea[i][j].addEventListener('click',function(){
+                                if(playarea[i][j].textContent==''){
+                                        playarea[i][j].textContent = startform;
+                                        total--;
+                                }
+                                for(let k=0;k<winx.length;k+=3){
+                                        if(playarea[winx[k]][winy[k]].textContent==playarea[winx[k+1]][winy[k+1]].textContent
+                                                && playarea[winx[k]][winy[k]].textContent==playarea[winx[k+2]][winy[k+2]].textContent
+                                                && startform == playarea[winx[k+2]][winy[k+2]].textContent
+                                        ){
+                                                alert(`${startform} wins`); 
+                                                location.reload();
+                                        }
+                                }
+                                startform = startform=='x'?'o':'x';
+                                if(total==0){
+                                        alert(`draw`); 
+                                        location.reload();
+                                }
+                        });
+
+                }
+        }
+        console.log(playarea)
+
+</script>
+
+</html>
