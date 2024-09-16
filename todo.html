@@ -24,22 +24,41 @@
                 let addbutton = document.getElementById("add");
                 let text = document.getElementById("new");
 
+                function loadPreviousList(){
+                        for(let i=0;i<localStorage.length;i++){
+                                let key = localStorage.key(i);
+                                let value = localStorage.getItem(key);
+                                createDivandSet(key,value);
+                        }
+                }
+                loadPreviousList();
+
                 addbutton.addEventListener('click',function(){
                         let newitem = text.value;
                         text.value = "";
                         if(newitem!=''){
-                                let div = document.createElement("div");
-                                let checkbox = document.createElement("input");
-                                checkbox.type = "checkbox";
-                                let button = document.createElement("button");
-                                button.textContent = "x";
-                                button.addEventListener("click",()=>{
-                                        div.remove();
-                                });
-                                div.append(checkbox,newitem+" ",button);
-                                body.appendChild(div);
+                                localStorage.setItem(newitem,'false');
+                                createDivandSet(newitem,'false');
                         }
                 });
+
+                function createDivandSet(key,value){
+                        let div = document.createElement("div");
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.checked = value==='true';
+                        let button = document.createElement("button");
+                        button.textContent = "x";
+                        button.addEventListener("click",()=>{
+                                localStorage.removeItem(key);
+                                div.remove();
+                        });
+                        div.append(checkbox,key+" ",button);
+                        body.appendChild(div);
+                        checkbox.addEventListener('change',()=>{
+                                localStorage.setItem(key,checkbox.checked?'true':'false');
+                        });
+                }
 
         </script>
 
