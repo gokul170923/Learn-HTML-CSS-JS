@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Timer</title>
+</head>
+<body>
+        <fieldset>
+                <legend>timer</legend>        
+                <label for="hours">hours:
+                        <input id = "hours" type="text" maxlength="2" style="width: 15px;">
+                </label>
+                <label for="mins">minutes:
+                        <input id = "mins" type="text" maxlength="2" style="width:15px">
+                </label>
+                <button style="color: green;" id = "start">start</button>
+                <button style="color: red;" id = "stop">stop</button>
+                <button id = "reset">reset</button>
+        </fieldset>
+
+        <script>
+                let hours = document.getElementById("hours");
+                let mins = document.getElementById("mins");
+                hours.value = "00";
+                mins.value = "00";
+        </script>
+</body>
+</html>
