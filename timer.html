@@ -24,6 +24,23 @@
                 let mins = document.getElementById("mins");
                 hours.value = "00";
                 mins.value = "00";
+                let start = document.getElementById("start");
+                let stop = document.getElementById("stop");
+                let reset = document.getElementById("reset");
+                start.addEventListener('click',()=>{
+                        let m = Number(hours.value)*60 + Number(mins.value);
+                        while(m>0){
+                                let h = m/60;
+                                hours.value = (h==0?"00":""+h);
+                                let leftmin = min - h*60;
+                                mins.value = (m==0?"00":""+m);
+                                m--;
+                        }
+                });
+                reset.addEventListener('click',()=>{
+                        hours.value = '00';
+                        mins.value = '00';
+                });
         </script>
 </body>
 </html>

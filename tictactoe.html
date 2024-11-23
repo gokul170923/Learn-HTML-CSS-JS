@@ -4,24 +4,57 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tic-Tac-Toe</title>
+        <style>
+                body{
+                        display: flex;
+                        height: 100vh;
+                        background-color: #1e0534;
+                        font-family: Arial, sans-serif;
+                        justify-content: center;
+                        align-items: center;
+                        overflow: hidden;
+                }
+                #playarea{
+                        background-color: #3c1858;
+                        border: 10px solid #ff007f;
+                        border-radius: 15px;
+                        height: 340px;
+                        width: 340px;
+                        display: grid;
+                        grid-template-columns: repeat(3,100px);
+                        grid-template-rows: repeat(3,100px);
+                        row-gap: 10px;
+                        column-gap: 10px;
+                        
+                }
+                button{
+                        width: 100px;
+                        height: 100px;
+                        font-size:xx-large;
+                        color: #ff007f;
+                        border: 1px solid black;
+                        border-radius: 15px;
+                        margin: 10px;
+                }
+        </style>
 </head>
 <body>
-        <button id="b00" ></button>
-        <button id="b01" ></button>
-        <button id="b02" ></button>
-        <br>
-        <button id="b10" ></button>
-        <button id="b11" ></button>
-        <button id="b12" ></button>
-        <br>
-        <button id="b20" ></button>
-        <button id="b21" ></button>
-        <button id="b22" ></button>
+        <div id = "playarea">
+                <button id="b00" ></button>
+                <button id="b01" ></button>
+                <button id="b02" ></button>
+                <button id="b10" ></button>
+                <button id="b11" ></button>
+                <button id="b12" ></button>
+                <button id="b20" ></button>
+                <button id="b21" ></button>
+                <button id="b22" ></button>
+        </div>
         
 </body>
 
 <script>
-        let startform = prompt('start with X or O');
+        let startform = 'x';
         startform = startform.toLowerCase();
         const winx = [0,0,0,1,1,1,2,2,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2];
         const winy = [0,1,2,0,1,2,0,1,2,0,0,0,1,1,1,2,2,2,0,1,2,2,1,0];
@@ -38,20 +71,23 @@
                                         playarea[i][j].textContent = startform;
                                         total--;
                                 }
+                                let done = false;
                                 for(let k=0;k<winx.length;k+=3){
                                         if(playarea[winx[k]][winy[k]].textContent==playarea[winx[k+1]][winy[k+1]].textContent
                                                 && playarea[winx[k]][winy[k]].textContent==playarea[winx[k+2]][winy[k+2]].textContent
                                                 && startform == playarea[winx[k+2]][winy[k+2]].textContent
                                         ){
                                                 alert(`${startform} wins`); 
+                                                done = true;
                                                 location.reload();
+                                                break;
                                         }
                                 }
-                                startform = startform=='x'?'o':'x';
-                                if(total==0){
+                                if(total==0 && done==false){
                                         alert(`draw`); 
                                         location.reload();
                                 }
+                                startform = startform=='x'?'o':'x';
                         });
 
                 }
