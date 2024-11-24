@@ -6,15 +6,90 @@
         <title>ToDoList</title>
         <style>
                 *{
-                        border: 1px solid red;
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        
+                }
+                html{
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        background: linear-gradient(135deg, #285bb5,#9a74c4);
+                        
+                }
+                h1{
+                        font-size: 50px;
+                        font-family: cursive;
+                        margin-top: 10px;
+                        margin-bottom: 30px;
+                        text-align: center; 
+                }
+                #additem{
+                        margin-bottom: 50px;
+                }
+                #new{
+                        border: 2px solid purple;
+                        width: 300px;
+                        height: 35px;
+                        margin-right: 3px;
+                }
+                #add{
+                        background-color: #9a74c4;
+                        height: 35px;
+                        width: 70px;
+                }
+                body{
+                        border: 3px solid black;
+                        width: 700px;
+                        min-height: 500px;
+                        border-radius: 10%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-top: 25px;
+                        margin-bottom: 25px;
+                }
+                .dynamicdiv{
+                        background-color: white;
+                        width: 373px;
+                        height: 40px;
+                        border-radius: 20px;
+                        margin-bottom: 15px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                }
+                .checkboxes{
+                        margin-left: 10px;
+                        width: 20px;
+                        height: 20px;
+                        accent-color: red;
+                        border-radius: 50%;
+                }
+                .tasktext{
+                        font-size: 16px;
+                        color: purple;
+                        font-size: large;
+                        width: 270px;
+                }
+                .deletebutton{
+                        background-color: transparent;
+                        width: 20px;
+                        height: 20px;
+                        color: purple;
+                        margin-right: 10px;
+                        font-size: large;
+                        border: none;
                 }
         </style>
 </head>
 <body>
-        
-        <div>
-                <label for="new">Add item: </label>
-                <input id="new" type="text">
+        <h1>TO-DO LIST</h1>
+
+        <div id = "additem">
+                <input id="new" type="text" placeholder=" Enter Task Here">
                 <button id="add">+</button>
         </div>
         
@@ -44,16 +119,22 @@
 
                 function createDivandSet(key,value){
                         let div = document.createElement("div");
+                        div.classList.add('dynamicdiv');
                         let checkbox = document.createElement("input");
+                        checkbox.classList.add('checkboxes');
                         checkbox.type = "checkbox";
                         checkbox.checked = value==='true';
                         let button = document.createElement("button");
+                        button.classList.add('deletebutton');
                         button.textContent = "x";
                         button.addEventListener("click",()=>{
                                 localStorage.removeItem(key);
                                 div.remove();
                         });
-                        div.append(checkbox,key+" ",button);
+                        let span = document.createElement("span");
+                        span.textContent = key;
+                        span.classList.add("tasktext");
+                        div.append(checkbox,span,button);
                         body.appendChild(div);
                         checkbox.addEventListener('change',()=>{
                                 localStorage.setItem(key,checkbox.checked?'true':'false');
