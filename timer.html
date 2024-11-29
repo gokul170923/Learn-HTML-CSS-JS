@@ -4,18 +4,80 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Timer</title>
+        <style>
+                *{
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                }
+                body{
+                        height: 100vh;
+                        border: 1px red solid;
+                        background-color: #f4f4f9;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                }
+                fieldset{
+                        height: 210px;
+                        width: 300px;
+                        border-radius: 10px;
+                        display: grid;
+                        grid-template-columns: 100px 100px 100px;
+                        grid-template-rows: 50px 50px 80px;
+                        border: 2px blue solid;
+                }
+                legend{
+                        margin-left: 20px ;
+                        color:blue;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        font-size: 1.5em;
+                }
+                label{
+                        grid-column-start: 1;
+                        grid-column-end: 4;
+                        margin-left: 20px;
+                        padding: 20px;
+                        align-self: center;
+                }
+                button{
+                        border-radius: 10px;
+                        margin: 10px;
+                        margin-bottom: 30px;
+                        color: white;
+                }
+                input{
+                        border-radius: 5px;
+                        height: 30px;
+                        width: 40px;
+                        border: 1px black solid;
+                }
+                #start{
+                        background-color: #28a745;
+                        border: 1px green solid;
+                }
+                #stop{
+                        background-color: #dc3545;
+                        border: 1px red solid;
+                }
+                #reset{
+                        background-color: #ffc107;   
+                        border: 1px yellow solid;
+                }
+        </style>
 </head>
 <body>
         <fieldset>
-                <legend>timer</legend>        
-                <label for="hours">hours:
-                        <input id = "hours" type="text" maxlength="2" style="width: 15px;">
+                <legend>Timer</legend>        
+                <label for="hours">Hours:
+                        <input id = "hours" type="text" maxlength="2">
                 </label>
-                <label for="mins">minutes:
-                        <input id = "mins" type="text" maxlength="2" style="width:15px">
+                <label for="mins">Minutes:
+                        <input id = "mins" type="text" maxlength="2">
                 </label>
-                <button style="color: green;" id = "start">start</button>
-                <button style="color: red;" id = "stop">stop</button>
+                <button id = "start">start</button>
+                <button id = "stop">stop</button>
                 <button id = "reset">reset</button>
         </fieldset>
 
@@ -27,15 +89,26 @@
                 let start = document.getElementById("start");
                 let stop = document.getElementById("stop");
                 let reset = document.getElementById("reset");
+                stop.addEventListener('click',()=>{
+                        clearInterval(interval);
+                });
+                let interval , Time ;
                 start.addEventListener('click',()=>{
-                        let m = Number(hours.value)*60 + Number(mins.value);
-                        while(m>0){
-                                let h = m/60;
-                                hours.value = (h==0?"00":""+h);
-                                let leftmin = min - h*60;
-                                mins.value = (m==0?"00":""+m);
-                                m--;
-                        }
+                       Time = (60*parseInt(hours.value)) + parseInt(mins.value);
+                       console.log(Time);
+                       if(Time>0){
+                                clearInterval(interval);
+                                interval = setInterval(()=>{
+                                        Time--;
+                                        let remhour = Math.floor(Time/60);
+                                        let remmin = Time%60;
+                                        hours.value = remhour < 10 ? "0" + remhour : remhour.toString();
+                                        mins.value = remmin < 10 ? "0" + remmin : remmin.toString();
+                                        console.log(hours.value);
+                                        if(Time==0) clearInterval(interval);
+
+                                },60000);
+                       }
                 });
                 reset.addEventListener('click',()=>{
                         hours.value = '00';
