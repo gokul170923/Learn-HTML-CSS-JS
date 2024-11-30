@@ -12,7 +12,6 @@
                 }
                 body{
                         height: 100vh;
-                        border: 1px red solid;
                         background-color: #f4f4f9;
                         display: flex;
                         justify-content: center;
@@ -38,7 +37,7 @@
                         grid-column-start: 1;
                         grid-column-end: 4;
                         margin-left: 20px;
-                        padding: 20px;
+                        padding-left: 10px;
                         align-self: center;
                 }
                 button{
@@ -64,6 +63,13 @@
                 #reset{
                         background-color: #ffc107;   
                         border: 1px yellow solid;
+                }
+                button:hover{
+                        background-color: white !important;
+                        color: black;
+                }
+                button:active{
+                        color: white;
                 }
         </style>
 </head>
@@ -109,6 +115,9 @@
 
                                 },60000);
                        }
+                });
+                stop.addEventListener('click',()=>{
+                        clearInterval(interval);
                 });
                 reset.addEventListener('click',()=>{
                         hours.value = '00';
