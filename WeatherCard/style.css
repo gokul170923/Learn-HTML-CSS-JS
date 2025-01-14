@@ -1,0 +1,81 @@
+*{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 10px;
+        /* border: 1px red solid; */
+}
+
+body{
+        background-color: #37474F;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.main{
+        background-color: white;
+        width: 400px;
+        min-height: 100px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+}
+
+.SearchArea{
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        height: 30px;
+}
+
+.SearchBar{
+        width:280px; 
+        border: white;
+        background-color: #c7e8e8;  
+        padding-left: 15px;
+}
+
+
+.SearchButton{
+        border: white;
+        border-radius: 50%;
+        width: 30px; 
+        height: 30px; 
+        background-color: #c7e8e8;
+        background-image: url(images/search-svgrepo-com.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 80%;
+}
+.SearchButton:hover{
+        background-color: #3ca3d7;
+}
+
+.placeholder{
+        background-image: url(images/cloud.png);
+        height: 200px;
+        width: 250px;
+        background-repeat: no-repeat;
+        background-size: 70%;
+        background-position: center;
+}
+
+.childs{
+        min-width: 100px;
+        height: 80px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+.ResultArea{
+        width: 380px;
+        display: flex;
+        justify-content: space-around;
+}
